@@ -33,8 +33,8 @@ function engineerPrompt() {
         ])
         .then((engineerResponse => {
             let newEngineer = new Engineer(engineerResponse.name, engineerResponse.id, engineerResponse.email, engineerResponse.gitHub);
-            employees.push(newEngineer);   
-            buildTeam();   
+            employees.push(newEngineer);
+            buildTeam();      
         }))
 }
 
@@ -70,7 +70,6 @@ function internPrompt() {
 
 function compileTeam() {
     let teamProfile = htmlGenerator(employees)
-    //console.log(generateMyTeam);
 
     fs.writeFile('.dis/teamPrile.html', teamProfile,(err) =>
     err ? console.log(err) : console.log('Team profile has been generated.'))
