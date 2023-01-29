@@ -8,34 +8,6 @@ const Intern = require('./lib/intern')
 
 let employees = [];
 
-function managerPrompt() {
-    inquirer
-        .prompt([{
-            type: 'input',
-            name: "name",
-            message: "Manager's Name: "
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: "Manager's ID: "
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: "Please enter the intern's email: "
-        },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: "Manager's Office Number: "
-        }
-        ])
-        .then((managerResponse => {
-            let newIntern = new Intern(managerResponse.name, managerResponse.id, managerResponse.email, managerResponse.officeNumber);
-            employees.push(newManager);
-        }))
-}
 function engineerPrompt() {
     inquirer
         .prompt([{
@@ -61,9 +33,11 @@ function engineerPrompt() {
         ])
         .then((engineerResponse => {
             let newEngineer = new Engineer(engineerResponse.name, engineerResponse.id, engineerResponse.email, engineerResponse.gitHub);
-            employees.push(newEngineer);      
+            employees.push(newEngineer);   
+            buildTeam();   
         }))
 }
+
 function internPrompt() {
     inquirer
         .prompt([{
@@ -90,5 +64,68 @@ function internPrompt() {
         .then((internResponse => {
             let newIntern = new Intern(internResponse.name, internResponse.id, internResponse.email, internResponse.school);
             employees.push(newIntern);
+            buildTeam();
         }))
 }
+
+function compileTeam() {
+    let teamProfile = htmlGenerator(employees)
+    //console.log(generateMyTeam);
+
+    fs.writeFile('.dis/teamPrile.html', teamProfile,(err) =>
+    err ? console.log(err) : console.log('Team profile has been generated.'))
+}
+
+function buildTeam() {
+    inquirer
+    .prompt([{
+        type: 'list',
+        name: 'buildTeam',
+        choices: ['Add an Engineer', 'Add an Intern', 'Generate My Team'],
+        message: 'Would you like to add an engineer, intern, or generate your team?',
+    }])
+    .then(builtTeam => {
+        if(builtTeam.buildTeam === 'Add an Engineer') {
+            engineerPrompt()
+        } else if(buildTeam.buildTeam === 'Add an Intern') {
+            internPrompt()
+        } else if(buildTeam.buildTeam === 'Generate My Team')
+            compileTeam()
+    })
+}
+
+function init() {
+    inquirer
+    .confirm('Would you like to build a team?')
+    if (confirm('Would you like to build a team?') == true) {
+        inquirer
+        .prompt([{
+            type: 'input',
+            name: "name",
+            message: "Manager's Name: "
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Manager's ID: "
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Please enter the intern's email: "
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "Manager's Office Number: "
+        }
+        ])
+        .then((managerResponse => {
+            let newManager = new Manager(managerResponse.name, managerResponse.id, managerResponse.email, managerResponse.officeNumber);
+            employees.push(newManager);
+        }))
+    } else { 'Thank you fo visiting this page. Please return when you are ready to build your team.'}
+
+}
+
+init();
