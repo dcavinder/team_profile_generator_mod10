@@ -95,9 +95,6 @@ function buildTeam() {
 }
 
 function init() {
-    inquirer
-    .confirm('Would you like to build a team?')
-    if (confirm('Would you like to build a team?') == true) {
         inquirer
         .prompt([{
             type: 'input',
@@ -112,7 +109,7 @@ function init() {
         {
             type: 'input',
             name: 'email',
-            message: "Please enter the intern's email: "
+            message: "Manager's E-Mail: "
         },
         {
             type: 'input',
@@ -123,9 +120,8 @@ function init() {
         .then((managerResponse => {
             let newManager = new Manager(managerResponse.name, managerResponse.id, managerResponse.email, managerResponse.officeNumber);
             employees.push(newManager);
+            buildTeam();
         }))
-    } else { 'Thank you fo visiting this page. Please return when you are ready to build your team.'}
-
-}
+    }
 
 init();
