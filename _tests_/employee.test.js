@@ -4,7 +4,7 @@ const Employee = require('../lib/employee')
 describe('Employee class', () => {
     it("getName returns the name for the specified class.", () => {
         const testEmplName = 'Danielle';
-        const testEmployee = new Employee('Danielle', 1123434, 'danielle@email.com');
+        const testEmployee = new Employee('Danielle', 1234, 'danielle@email.com');
         expect(testEmployee.name).toBe(testEmplName);
     });
 
