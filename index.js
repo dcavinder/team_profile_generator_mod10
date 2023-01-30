@@ -36,7 +36,7 @@ function engineerPrompt() {
             employees.push(newEngineer);
             buildTeam();      
         }))
-}
+};
 
 function internPrompt() {
     inquirer
@@ -57,23 +57,23 @@ function internPrompt() {
         },
         {
             type: 'input',
-            name: 'school',
+            name: 'gitHub',
             message: "Intern's School: "
         }
         ])
         .then((internResponse => {
-            let newIntern = new Intern(internResponse.name, internResponse.id, internResponse.email, internResponse.school);
+            let newIntern = new Intern(internResponse.name, internResponse.id, internResponse.email, internResponse.gitHub);
             employees.push(newIntern);
-            buildTeam();
+            buildTeam();      
         }))
-}
+};
 
 function compileTeam() {
     let teamProfile = htmlGenerator(employees)
 
-    fs.writeFile('.dis/teamPrile.html', teamProfile,(err) =>
+    fs.writeFile('./dist/teamProfile.html', teamProfile,(err) =>
     err ? console.log(err) : console.log('Team profile has been generated.'))
-}
+};
 
 function buildTeam() {
     inquirer
@@ -83,15 +83,15 @@ function buildTeam() {
         choices: ['Add an Engineer', 'Add an Intern', 'Generate My Team'],
         message: 'Would you like to add an engineer, intern, or generate your team?',
     }])
-    .then(builtTeam => {
-        if(builtTeam.buildTeam === 'Add an Engineer') {
+    .then(buildTeam => {
+        if(buildTeam.buildTeam === 'Add an Engineer') {
             engineerPrompt()
         } else if(buildTeam.buildTeam === 'Add an Intern') {
             internPrompt()
         } else if(buildTeam.buildTeam === 'Generate My Team')
             compileTeam()
     })
-}
+};
 
 function init() {
         inquirer
@@ -121,6 +121,6 @@ function init() {
             employees.push(newManager);
             buildTeam();
         }))
-    }
+    };
 
 init();
