@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/dcavinder/team_profile_generator_mod10/issues"
   },
-  "homepage": "https://github.com/dcavinder/team_profile_generator_mod10#readme"
+  "homepage": "https://github.com/dcavinder/team_profile_generator_mod10#readme",
+  "devDependencies": {
+    "jest": "^29.4.1"
+  }
 }
