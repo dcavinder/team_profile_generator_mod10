@@ -3,6 +3,9 @@
 # Description
 The team profile generator is a cli application that allows the user to entern information for employees inclusing manager, engineers, and interns. After all desire information is entered the application generates an html page which displays the team profile.
 
+# Demo
+https://drive.google.com/file/d/1SYJGKYI1Z87JDhjkV5FJrgROPaaM7v4p/view
+
 # Table of Contents 
 * [Installation](#-Installation)
 * [Usage](#-Usage)
